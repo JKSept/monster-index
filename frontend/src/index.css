@@ -1,16 +1,55 @@
+/* -------------------------------------------------------
+   Global Theme + Variables
+------------------------------------------------------- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* shared values */
+  --font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* DARK THEME COLORS */
+  --bg: #242424;
+  --text: rgba(255,255,255,0.87);
+  --card-bg: #1a1a1a;
+  --card-border: #555;
+  --accent: #d62828;
+  --accent-light: white;
+  --tab: #2b2828;
+  --tabtext: white;
+  --tabactive: white;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* LIGHT THEME (overrides) */
+.light {
+  --bg: #ffffff;
+  --text: #213547;
+  --card-bg: #f9f9f9;
+  --card-border: #999;
+  --accent: #d62828; /* red-ish accent for Pokemon flavor */
+  --accent-light: #ff8a80;
+  --tab: #ded5d5;
+  --tabtext: black;
+  --tabactive: black;
+}
+
+
+/* -------------------------------------------------------
+   Page Layout (centers entire app)
+------------------------------------------------------- */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;    /* horizontal centering */
+  align-items: flex-start;     /* top alignment */
+}
+
+/* -------------------------------------------------------
+   Text Defaults
+------------------------------------------------------- */
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
 a {
@@ -22,47 +61,141 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
+/* -------------------------------------------------------
+   App Container
+------------------------------------------------------- */
+.app-container {
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding: 20px;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
+/* -------------------------------------------------------
+   Buttons (global)
+------------------------------------------------------- */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
+
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: var(--accent);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* -------------------------------------------------------
+   Tab Navigation
+------------------------------------------------------- */
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* Base tab styling */
+.tab {
+  padding: 0.6em 1.2em;
+  border: 1px solid #555;
+  background-color: var(--tab);
+  color: var(--tabtext);
+}
+
+/* Hover effect */
+.tab:hover {
+  border-color: #646cff;
+  color: #fff;
+}
+
+/* Active tab */
+.tab.active {
+  background-color: var(--accent);
+  border-color: var(--accent-light);
+  color: var(--tabactive);
+  font-weight: bold;
+  cursor: default;
+}
+
+/* -------------------------------------------------------
+   Dex Grid + Dex Cards
+------------------------------------------------------- */
+.dex-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+
+  width: 100%;
+  max-width: 900px;      /* Controls max columns (6) */
+  margin: 0 auto;
+}
+
+.dex-card {
+  border: 2px solid var(--card-border);
+  box-shadow: 0 0 0 4px #000 inset;
+  text-align: center;
+  padding: 8px;
+
+  border-radius: 8px;
+}
+
+.dex-card:hover {
+    border-color: gold;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Per-card text override example */
+#card-text {
+  color: gold;
+}
+
+/* -------------------------------------------------------
+   Light mode tweaks
+------------------------------------------------------- */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
   button {
     background-color: #f9f9f9;
   }
+  a:hover {
+    color: #747bff;
+  }
 }
+
+/* mode button styling */
+
+.theme-toggle {
+  margin-bottom: 16px;
+  padding: 0.5em 1em;
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
