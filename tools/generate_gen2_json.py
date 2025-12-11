@@ -45,6 +45,7 @@ def main():
             "id": regional_id,
             "name": capitalize_name(raw_name),
             "image_url": f"{SPRITE_BASE}{national_id}.png",
+            "gen": '2'
 
 
         }

@@ -15,6 +15,7 @@
   --tab: #2b2828;
   --tabtext: white;
   --tabactive: white;
+  --dexcardhover: rgba(255, 255, 255, 0.1);
 }
 
 /* LIGHT THEME (overrides) */
@@ -28,6 +29,7 @@
   --tab: #ded5d5;
   --tabtext: black;
   --tabactive: black;
+  --dexcardhover: rgb(0, 0, 0, 0.1);
 }
 
 
@@ -159,7 +161,7 @@ button:focus-visible {
 
 .dex-card:hover {
     border-color: gold;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--dexcardhover);
 }
 
 /* Per-card text override example */
@@ -186,16 +188,29 @@ button:focus-visible {
 /* mode button styling */
 
 .theme-toggle {
-  margin-bottom: 16px;
-  padding: 0.5em 1em;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+
+  padding: 0.4em 0.9em;
   background-color: var(--card-bg);
   color: var(--text);
   border: 1px solid var(--card-border);
-  border-radius: 8px;
+  border-radius: 999px; /* pill shape; change if you prefer square */
   cursor: pointer;
+  font-size: 0.9rem;
 }
+
 
 .theme-toggle:hover {
   border-color: var(--accent);
 }
 
+
+
+.dex-card.caught {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(100, 108, 255, 0.5);
+  transform: translateY(-2px);
+}

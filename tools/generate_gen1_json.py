@@ -13,8 +13,11 @@ for i in range(1, 152):
         "id": i,
         "name": data["name"].capitalize(),
 
-        "image_url": data["sprites"]["front_default"]
+
+        "image_url": data["sprites"]["front_default"],
+        'gen': '1'
     }
+
 
     pokemon_list.append(pokemon)
 
